@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Cpu, Zap, Crown, Activity, Calendar, Trophy, Brain, Network, Settings, LogOut, Menu, X, ChevronLeft, ChevronRight, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { UserRole, User as UserType, PageType } from '@/app/page'
+// At the top — import the router
+import { useRouter } from 'next/navigation';
+
 
 interface AppSidebarProps {
   currentRole: UserRole
@@ -16,15 +19,17 @@ interface AppSidebarProps {
   onLogout: () => void
 }
 
-export function AppSidebar({ 
-  currentRole, 
-  onRoleChange, 
-  currentPage, 
-  onPageChange, 
-  isOpen, 
-  onToggle, 
-  user, 
-  onLogout 
+
+
+export function AppSidebar({
+  currentRole,
+  onRoleChange,
+  currentPage,
+  onPageChange,
+  isOpen,
+  onToggle,
+  user,
+  onLogout
 }: AppSidebarProps) {
   const roleConfig = {
     contributor: {
@@ -46,6 +51,16 @@ export function AppSidebar({
       bg: 'bg-amber-50 dark:bg-amber-900/20'
     }
   }
+
+  const router = useRouter();
+
+const handleLogout = () => {
+  onLogout();         // Clear user session
+  router.push('/');   // Go to landing page
+};
+
+
+  const fallbackRole: UserRole = roleConfig[currentRole] ? currentRole : 'contributor';
 
   const menuItems = [
     { icon: Activity, label: 'Overview', id: 'overview' as PageType },
@@ -74,7 +89,7 @@ export function AppSidebar({
       <motion.aside
         className={`fixed left-0 top-0 h-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-r border-slate-200/60 dark:border-slate-700/60 z-50 transition-all duration-300 overflow-hidden`}
         initial={false}
-        animate={{ 
+        animate={{
           width: isOpen ? 288 : (typeof window !== 'undefined' && window.innerWidth >= 1024 ? 80 : 0),
           opacity: isOpen ? 1 : (typeof window !== 'undefined' && window.innerWidth >= 1024 ? 1 : 0)
         }}
@@ -112,16 +127,15 @@ export function AppSidebar({
                   {Object.entries(roleConfig).map(([role, config]) => {
                     const Icon = config.icon
                     const isActive = currentRole === role
-                    
+
                     return (
                       <motion.button
                         key={role}
                         onClick={() => onRoleChange(role as UserRole)}
-                        className={`flex flex-col items-center gap-1 p-3 rounded-lg transition-all duration-300 ${
-                          isActive 
-                            ? `bg-gradient-to-r ${config.color} text-white shadow-lg` 
-                            : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-white/60 dark:hover:bg-slate-700/60'
-                        }`}
+                        className={`flex flex-col items-center gap-1 p-3 rounded-lg transition-all duration-300 ${isActive
+                          ? `bg-gradient-to-r ${config.color} text-white shadow-lg`
+                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-white/60 dark:hover:bg-slate-700/60'
+                          }`}
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                       >
@@ -134,21 +148,21 @@ export function AppSidebar({
 
                 {/* User Info */}
                 <motion.div
-                  className={`mt-4 p-4 rounded-xl ${roleConfig[currentRole].bg} border border-slate-200/60 dark:border-slate-700/60`}
-                  animate={{ 
-                    backgroundColor: roleConfig[currentRole].bg
+                  className={`mt-4 p-4 rounded-xl ${roleConfig[fallbackRole].bg} border border-slate-200/60 dark:border-slate-700/60`}
+                  animate={{
+                    backgroundColor: roleConfig[fallbackRole].bg
                   }}
                   transition={{ duration: 0.3 }}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 bg-gradient-to-r ${roleConfig[currentRole].color} rounded-full flex items-center justify-center`}>
+                    <div className={`w-10 h-10 bg-gradient-to-r ${roleConfig[fallbackRole].color} rounded-full flex items-center justify-center`}>
                       <span className="text-white font-medium text-sm">
-                        {user.username.charAt(0).toUpperCase()}
+                        {user?.username ? user.username.charAt(0).toUpperCase() : "?"}
                       </span>
                     </div>
                     <div>
-                      <div className="font-medium text-slate-900 dark:text-slate-100">{user.username}</div>
-                      <div className="text-sm text-slate-600 dark:text-slate-400">{roleConfig[currentRole].label}</div>
+                      <div className="font-medium text-slate-900 dark:text-slate-100">{user?.username ?? "User"}</div>
+                      <div className="text-sm text-slate-600 dark:text-slate-400">{roleConfig[fallbackRole].label}</div>
                     </div>
                   </div>
                 </motion.div>
@@ -163,11 +177,10 @@ export function AppSidebar({
                 <motion.button
                   key={item.id}
                   onClick={() => onPageChange(item.id)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group ${
-                    currentPage === item.id
-                      ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-white/60 dark:hover:bg-slate-700/60'
-                  }`}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group ${currentPage === item.id
+                    ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-white/60 dark:hover:bg-slate-700/60'
+                    }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   title={!isOpen ? item.label : undefined}
@@ -175,7 +188,7 @@ export function AppSidebar({
                   <item.icon className="w-5 h-5 flex-shrink-0" />
                   <AnimatePresence>
                     {isOpen && (
-                      <motion.span 
+                      <motion.span
                         className="font-medium"
                         initial={{ opacity: 0, width: 0 }}
                         animate={{ opacity: 1, width: "auto" }}
@@ -198,11 +211,12 @@ export function AppSidebar({
           </div>
 
           {/* Footer */}
+          {/* Footer */}
           <div className="p-4 border-t border-slate-200/60 dark:border-slate-700/60">
             <div className="space-y-2">
               <Button
                 variant="ghost"
-                onClick={onLogout}
+                onClick={handleLogout}
                 className="w-full justify-start text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"
               >
                 <LogOut className="w-5 h-5 mr-3" />
@@ -210,6 +224,7 @@ export function AppSidebar({
               </Button>
             </div>
           </div>
+
         </div>
 
         {/* Desktop Toggle Button */}

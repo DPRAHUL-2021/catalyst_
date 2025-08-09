@@ -26,13 +26,9 @@ export default function CatalystApp() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Check for existing session
-    const savedUser = localStorage.getItem('catalyst_user')
-    if (savedUser) {
-      setUser(JSON.parse(savedUser))
-    }
-    setIsLoading(false)
-  }, [])
+  localStorage.removeItem('catalyst_user') // Force fresh start
+  setIsLoading(false)
+}, [])
 
   const handleLogin = (userData: User) => {
     setUser(userData)
