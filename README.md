@@ -1,7 +1,7 @@
 <div align="center">
   <img src="public/placeholder-logo.svg" alt="Catalyst Logo" width="80" height="80" />
   
-  # 🚀 Catalyst Dashboard
+  # 🚀 Catalyst
   
   <p>
     <strong>Decentralized Compute Network Management & Insights Platform</strong><br>
@@ -11,12 +11,6 @@
   <div>
     <a href="https://vercel.com/pranav-rahul-digudadis-projects/v0-catalyst-dashboard">
       <img src="https://img.shields.io/badge/🚀_Deployed_on-Vercel-black?style=for-the-badge&logo=vercel" alt="Deployed on Vercel" />
-    </a>
-    <a href="https://v0.dev/chat/projects/AS8TgwFoCUw">
-      <img src="https://img.shields.io/badge/🛠️_Built_with-v0.dev-6366f1?style=for-the-badge&logo=react" alt="Built with v0" />
-    </a>
-    <a href="#">
-      <img src="https://img.shields.io/badge/📜_License-MIT-blue?style=for-the-badge&logo=opensource" alt="License" />
     </a>
     <a href="#">
       <img src="https://img.shields.io/badge/⚡_Status-Active-success?style=for-the-badge" alt="Status" />
