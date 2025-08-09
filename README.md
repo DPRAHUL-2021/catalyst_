@@ -399,19 +399,6 @@ We welcome contributions from the community! Here's how you can help make Cataly
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-### 🛡️ **What This Means**
-- ✅ **Commercial use allowed**
-- ✅ **Modification allowed**
-- ✅ **Distribution allowed**
-- ✅ **Private use allowed**
-- ❗ **Must include license and copyright notice**
-
----
-
 ## 🙏 Acknowledgements & Credits
 
 We're grateful to these amazing projects and communities:
@@ -433,11 +420,6 @@ We're grateful to these amazing projects and communities:
   <strong><a href="https://lucide.dev">Lucide Icons</a></strong><br>
   <em>Icon library</em>
 </td>
-<td align="center">
-  <img src="https://v0.dev/favicon.ico" width="48" height="48" alt="v0.dev" /><br>
-  <strong><a href="https://v0.dev">v0.dev</a></strong><br>
-  <em>AI development tool</em>
-</td>
 </tr>
 <tr>
 <td align="center">
@@ -449,11 +431,6 @@ We're grateful to these amazing projects and communities:
   <img src="https://nextjs.org/favicon.ico" width="48" height="48" alt="Next.js" /><br>
   <strong><a href="https://nextjs.org">Next.js</a></strong><br>
   <em>React framework</em>
-</td>
-<td align="center">
-  <img src="https://www.framer.com/favicon.ico" width="48" height="48" alt="Framer Motion" /><br>
-  <strong><a href="https://www.framer.com/motion">Framer Motion</a></strong><br>
-  <em>Animation library</em>
 </td>
 <td align="center">
   <img src="https://react.dev/favicon.ico" width="48" height="48" alt="React" /><br>
