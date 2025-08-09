@@ -1,5 +1,5 @@
 <div align="center">
-  ## 🚀 Catalyst
+  <h2>🚀 Catalyst </h2>
   
   <p>
     <strong>Decentralized Compute Network Management & Insights Platform</strong><br>
