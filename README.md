@@ -1,5 +1,4 @@
 <div align="center">
-    <img src="catalyst_w.png" alt="Catalyst Logo" width="180" height="80" />
   ## 🚀 Catalyst
   
   <p>
